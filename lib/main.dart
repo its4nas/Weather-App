@@ -49,6 +49,27 @@ class _WeatherPageState extends State<WeatherPage> {
                       ),
                     ),
                     ),
+                    SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.location_on, color: Colors.black),
+                        SizedBox(width: 10),
+                        Text('Jakarta', style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                    SizedBox(height: 80),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text('19.5°C', style: TextStyle(color: Colors.black, fontSize: 80, fontWeight: FontWeight.bold),),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('Haze', style: TextStyle(color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold),),
+                        Image.asset('assets/icons/Haze.png', width: 90, height: 90,),
+                      ],
+                    )
                 ],
               ),
             ),
