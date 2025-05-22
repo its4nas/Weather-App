@@ -10,13 +10,8 @@ class WeatherService {
   Future<Map<String, dynamic>> getWeather(String cityName) async 
   {
     try {
-      print('Fetching weather for city: $cityName');
       final url = Uri.parse('https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=$apiKey');
-      print('Request URL: $url');
-      
       final response = await http.get(url);
-      print('Response status code: ${response.statusCode}');
-      print('Response body: ${response.body}');
       
       if (response.statusCode == 200) {
         return {
@@ -30,9 +25,7 @@ class WeatherService {
           'error': errorData['message'] ?? 'Failed to load weather data'
         };
       }
-    } catch (e, stackTrace) {
-      print('Error details: $e');
-      print('Stack trace: $stackTrace');
+    } catch (e) {
       return {
         'success': false,
         'error': 'Unable to connect to weather service. Please check your internet connection.'
@@ -75,14 +68,10 @@ class WeatherService {
       print('Fetching weather for current location');
       Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
       double lat = position.latitude, lon = position.longitude;
-      print('Location: lat=$lat, lon=$lon');
       
-      final url = Uri.parse('https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric');
-      print('Request URL: $url');
+      final url = Uri.parse('https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=$apiKey');
       
       final response = await http.get(url);
-      print('Response status code: ${response.statusCode}');
-      print('Response body: ${response.body}');
       
       if (response.statusCode == 200) {
         return {
@@ -96,9 +85,7 @@ class WeatherService {
           'error': errorData['message'] ?? 'Failed to load weather data'
         };
       }
-    } catch (e, stackTrace) {
-      print('Error details: $e');
-      print('Stack trace: $stackTrace');
+    } catch (e) {
       if (e is TimeoutException) {
         return {
           'success': false,
